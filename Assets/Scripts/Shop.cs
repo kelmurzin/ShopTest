@@ -5,14 +5,9 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     public ItemSO[] itemSO;
-    [SerializeField] private ItemTemplate[] itemTemplate;  
+    [SerializeField] private ItemTemplate[] itemTemplate;
+    [SerializeField] private Money money;
     
-    private void Start()
-    {
-        LoadInfoItem();
-        CheckActivateItem();        
-    }
-
     public void ActivateItem(string productId)
     {
         PlayerPrefs.SetInt(productId, 1);
@@ -47,7 +42,16 @@ public class Shop : MonoBehaviour
             else
                 itemTemplate[i].ButtonItem.interactable = false;
         }
-    }   
+    }
+
+    private void Start()
+    {
+        money.onValueChange += CheckMoneyForButton;
+        LoadInfoItem();
+        CheckActivateItem(); 
+    }
+
+    private void OnDestroy() => money.onValueChange -= CheckMoneyForButton;
 
     private void LoadInfoItem()
     {

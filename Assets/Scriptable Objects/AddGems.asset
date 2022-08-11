@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afd292807b420a42a95180ce9becdfd, type: 3}
   m_Name: AddGems
   m_EditorClassIdentifier: 
-  Name: AddGems
-  Discription: +100 Gems
-  Cost: 100
-  ProductID: AddGems
+  nameItem: Gems
+  discription: Add gems
+  cost: 100
+  productID: 1

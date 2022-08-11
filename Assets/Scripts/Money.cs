@@ -2,41 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
 public class Money : MonoBehaviour
 {
-    [SerializeField] private MoneyUI moneyUI;
-    [SerializeField] private Shop shop;
-    private int AmountMoney;
+    public event Action<int> onValueChange = delegate { };
+    public int AmountMoney => amountMoney;
 
-    private void Start()=>    
-        shop.CheckMoneyForButton(AmountMoney);
-    
+    [SerializeField] private Shop shop;
+    private int amountMoney;
+    private GameObject buttonItem;
+
     public void AddMoney(int _money)
     {
-        AmountMoney += _money;
-        UpdateAmountMoney();
+        amountMoney += _money;
+        onValueChange(amountMoney);
     }
 
     public void BuyForMoney()
     {
-        GameObject ButtonItem = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
-        AmountMoney -= shop.itemSO[ButtonItem.GetComponentInParent<ItemTemplate>().index].Cost;
-        UpdateAmountMoney();
-        shop.ActivateItem(shop.itemSO[ButtonItem.GetComponentInParent<ItemTemplate>().index].ProductID);
+        buttonItem = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
+        amountMoney -= shop.itemSO[buttonItem.GetComponentInParent<ItemTemplate>().index].Cost;
+        onValueChange(amountMoney);
+        shop.ActivateItem(shop.itemSO[buttonItem.GetComponentInParent<ItemTemplate>().index].ProductID);
     }
 
     public void ClearPlayerPref()
     {
         PlayerPrefs.DeleteAll();
         shop.CheckActivateItem();
-        shop.CheckMoneyForButton(AmountMoney);
+        onValueChange(amountMoney);
     }
 
-    private void UpdateAmountMoney()
-    {
-        moneyUI.UpdateMoneyText(AmountMoney);
-        shop.CheckMoneyForButton(AmountMoney);
-    }
-
+    private void Start() => onValueChange(amountMoney);
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afd292807b420a42a95180ce9becdfd, type: 3}
   m_Name: EliteWeapon
   m_EditorClassIdentifier: 
-  Name: Elite Weapon
-  Discription: Get Elite weapons for 2 hours
-  Cost: 500
-  ProductID: EliteWeapon
+  nameItem: Eliteweapon
+  discription: 
+  cost: 500
+  productID: 3

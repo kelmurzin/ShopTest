@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2afd292807b420a42a95180ce9becdfd, type: 3}
   m_Name: EliteCharacter
   m_EditorClassIdentifier: 
-  Name: Elite Character
-  Discription: Get an elite character forever
-  Cost: 200
-  ProductID: EliteCharacter
+  nameItem: EliteCharacter
+  discription: 
+  cost: 200
+  productID: 2

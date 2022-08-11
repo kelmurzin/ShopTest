@@ -5,8 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="ItemName", menuName = "Scriptable Objects/Item", order = 1)]
 public class ItemSO : ScriptableObject
 {
-    public string Name;
-    public string Discription;
-    public int Cost;
-    public string ProductID;
+    public string Name => nameItem;
+    public string Discription => discription;
+    public int Cost => cost;
+    public string ProductID => productID;
+    
+    [SerializeField] private string nameItem;
+    [SerializeField] private string discription;
+    [SerializeField] private int cost;
+    [SerializeField] private string productID;
+    
 }
